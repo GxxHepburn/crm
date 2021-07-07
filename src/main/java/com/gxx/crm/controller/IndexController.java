@@ -1,4 +1,4 @@
-package com.gxx.crm;
+package com.gxx.crm.controller;
 
 import com.gxx.crm.base.BaseController;
 import org.springframework.stereotype.Controller;
