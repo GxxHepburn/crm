@@ -3,9 +3,6 @@ package com.gxx.crm.exceptions;
 
 /**
  * 自定义参数异常类
- *
- * 乐字节：专注线上IT培训
- * 答疑老师微信：lezijie
  */
 public class ParamsException extends RuntimeException {
     private Integer code= 300;

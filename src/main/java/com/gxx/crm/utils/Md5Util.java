@@ -4,18 +4,10 @@ import java.security.MessageDigest;
 
 import java.util.Base64;
 
-/**
- * 乐字节：专注线上IT培训
- * 答疑老师微信：lezijie
- */
 public class Md5Util {
 
 	/**
 	 * 通过MD5算法加密字符串
-	 *
-	 *
-	 * 乐字节：专注线上IT培训
-	 * 答疑老师微信：lezijie
 	 * @param msg
 	 * @return java.lang.String
 	 */

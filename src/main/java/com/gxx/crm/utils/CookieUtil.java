@@ -9,21 +9,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-/**
- * Cookie工具类
- *
- * 乐字节：专注线上IT培训
- * 答疑老师微信：lezijie
- */
 public class CookieUtil {
 
 
 	/**
 	 * 设置Cookie
-	 *
-	 *
-	 * 乐字节：专注线上IT培训
-	 * 答疑老师微信：lezijie
 	 * @param key Cookie名称
 	 * @param value Cookie Value
 	 * @param domain
@@ -51,10 +41,6 @@ public class CookieUtil {
 
 	/**
 	 * 设置Cookie
-	 *
-	 *
-	 * 乐字节：专注线上IT培训
-	 * 答疑老师微信：lezijie
 	 * @param key Cookie名称
 	 * @param value Cookie Value
 	 * @param domain
@@ -73,10 +59,6 @@ public class CookieUtil {
 
 	/**
 	 * 获取Cookie
-	 *
-	 *
-	 * 乐字节：专注线上IT培训
-	 * 答疑老师微信：lezijie
 	 * @param request
 	 * @param key
 	 * @return java.lang.String
@@ -103,10 +85,6 @@ public class CookieUtil {
 
 	/***
 	 * 清除cookie
-	 *
-	 *
-	 * 乐字节：专注线上IT培训
-	 * 答疑老师微信：lezijie
 	 * @param cookieName
 	 * @param request
 	 * @param response

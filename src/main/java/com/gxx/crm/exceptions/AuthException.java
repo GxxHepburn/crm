@@ -3,9 +3,6 @@ package com.gxx.crm.exceptions;
 
 /**
  * 自定义权限异常类
- *
- * 乐字节：专注线上IT培训
- * 答疑老师微信：lezijie
  */
 public class AuthException extends RuntimeException {
     private Integer code= 400;

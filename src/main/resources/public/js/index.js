@@ -17,16 +17,17 @@ layui.use(['form','jquery','jquery_cookie'], function () {
         console.log(data.field) // 当前容器的全部表单字段，名值对形式：{name: value}
 
         /* 表单元素的非空校验 */
+        /* 实际项目中前端和后端要分别验证的 */
 
         /* 发送ajax请求，传递用户姓名与密码，执行用户登录操作 */
         $.ajax({
-            type:"post",
+            type: "post",
             url: ctx + "/user/login",
             data:{
-                userName:data.field.username,
-                userPwd:data.field.password
+                userName: data.field.username,
+                userPwd: data.field.password
             },
-            success:function (result) { // result是回调函数，用来接收后端返回的数据
+            success: function (result) { // result是回调函数，用来接收后端返回的数据
                 console.log(result);
                 // 判断是否登录成功 如果code=200，则表示成功，否则表示失败
                 if (result.code == 200) {
@@ -53,8 +54,6 @@ layui.use(['form','jquery','jquery_cookie'], function () {
                             $.cookie("userName",result.result.userName);
                             $.cookie("trueName",result.result.trueName);
                         }
-
-
 
                         // 登录成功后，跳转到首页
                         window.location.href = ctx + "/main";

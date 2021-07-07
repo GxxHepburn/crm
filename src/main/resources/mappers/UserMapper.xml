@@ -16,7 +16,7 @@
     id, user_name, user_pwd, true_name, email, phone, is_valid, create_date, update_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
@@ -26,12 +26,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.gxx.crm.vo.User" >
-    insert into t_user (id, user_name, user_pwd, 
-      true_name, email, phone, 
+    insert into t_user (id, user_name, user_pwd,
+      true_name, email, phone,
       is_valid, create_date, update_date
       )
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
-      #{trueName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR},
+      #{trueName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
       #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -138,4 +138,13 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--  通过用户名查询用户记录，返回用户对象-->
+  <select id="queryUserByName" parameterType="string" resultType="com.gxx.crm.vo.User">
+    select
+    <include refid="Base_Column_List"></include>
+    from t_user
+    where user_name = #{userName}
+  </select>
+
 </mapper>
