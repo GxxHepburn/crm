@@ -7,6 +7,8 @@
   <groupId>com.gxx.crm</groupId>
   <artifactId>crm</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <!-- 设置打包类型为 war包 -->
+  <packaging>war</packaging>
 
   <name>crm</name>
 
@@ -86,7 +88,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>1.2.56</version>
+      <version>1.2.47</version>
     </dependency>
     <!-- DevTools 热部署 -->
     <dependency>

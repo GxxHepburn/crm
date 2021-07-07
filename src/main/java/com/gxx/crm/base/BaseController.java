@@ -15,7 +15,7 @@ public class BaseController {
     // /之前加上 localhost:8080  就可以直接在访问页面了
     // 本项目中就是 /crm
     @ModelAttribute
-    public void preHandler(HttpServletRequest request) {
+    public void preHandler(HttpServletRequest request){
         request.setAttribute("ctx", request.getContextPath());
     }
 
