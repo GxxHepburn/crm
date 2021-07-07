@@ -24,56 +24,71 @@
 
   <dependencies>
 
+    <!-- 排除内部Tomcat的影响 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- web 环境 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-
+    <!-- aop -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
-
+    <!-- freemarker -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-freemarker</artifactId>
     </dependency>
-
+    <!-- 测试环境 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
-
+    <!-- mybatis -->
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
       <artifactId>mybatis-spring-boot-starter</artifactId>
       <version>2.1.1</version>
     </dependency>
-
+    <!-- 分页插件 -->
     <dependency>
       <groupId>com.github.pagehelper</groupId>
       <artifactId>pagehelper-spring-boot-starter</artifactId>
       <version>1.2.13</version>
     </dependency>
-
+    <!-- 打包上线时需要忽略配置文件中的mysql -->
+    <!-- mysql -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- c3p0 -->
     <dependency>
       <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
       <version>0.9.5.4</version>
     </dependency>
-
+    <!-- commons-lang3 -->
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.5</version>
     </dependency>
-
+    <!-- json -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.56</version>
     </dependency>
-
+    <!-- DevTools 热部署 -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -84,9 +99,13 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+
+
   </dependencies>
 
   <build>
+    <!-- 设置构建的war文件的名称 -->
+    <finalName>crm</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

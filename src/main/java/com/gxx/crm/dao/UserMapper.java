@@ -2,6 +2,7 @@ package com.gxx.crm.dao;
 
 import com.gxx.crm.base.BaseMapper;
 import com.gxx.crm.vo.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
