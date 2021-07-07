@@ -1,9 +1,13 @@
 package com.gxx.crm.base;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author gxx
@@ -70,5 +74,59 @@ public abstract class BaseService<T, ID> {
         return baseMapper.selectByParams(baseQuery);
     }
 
+    /**
+     * 更新单条记录
+     * @param entity
+     * @return
+     * @throws DataAccessException
+     */
+    public Integer updateByPrimaryKeySelective(T entity) throws DataAccessException {
+        return baseMapper.updateByPrimaryKeySelective(entity);
+    }
 
+    /**
+     * 批量更新
+     * @param entities
+     * @return
+     * @throws DataAccessException
+     */
+    public Integer updateBatch(List<T> entities) throws DataAccessException {
+        return baseMapper.updateBatch(entities);
+    }
+
+    /**
+     * 删除单条记录
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
+    public Integer deleteByPrimaryKey(ID id) throws DataAccessException {
+        return baseMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     * @throws DataAccessException
+     */
+    public Integer deleteBatch(ID[] ids) throws DataAccessException {
+        return baseMapper.deleteBatch(ids);
+    }
+
+    /**
+     * 查询数据表格对应的数据
+     * @param baseQuery
+     * @return
+     */
+    public Map<String, Object> queryByParamsForTable(BaseQuery baseQuery) {
+        Map<String, Object> result = new HashMap<>();
+        PageHelper.startPage(baseQuery.getPage(), baseQuery.getLimit());
+        PageInfo<T> pageInfo = new PageInfo<>(selectByParams(baseQuery));
+        result.put("count", pageInfo.getTotal());
+        result.put("data", pageInfo.getList());
+        result.put("code", 0);
+        result.put("msg", "");
+        return result;
+    }
 }
