@@ -8,7 +8,7 @@
     <result column="cgjl" property="cgjl" jdbcType="INTEGER" />
     <result column="overview" property="overview" jdbcType="VARCHAR" />
     <result column="link_man" property="linkMan" jdbcType="VARCHAR" />
-    <result column="like_phone" property="likePhone" jdbcType="VARCHAR" />
+    <result column="link_phone" property="linkPhone" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="create_man" property="createMan" jdbcType="VARCHAR" />
     <result column="assign_man" property="assignMan" jdbcType="VARCHAR" />
@@ -20,11 +20,11 @@
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, chance_source, customer_name, cgjl, overview, link_man, like_phone, description, 
+    id, chance_source, customer_name, cgjl, overview, link_man, link_phone, description,
     create_man, assign_man, assign_time, state, dev_result, is_valid, create_date, update_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_sale_chance
     where id = #{id,jdbcType=INTEGER}
@@ -34,17 +34,17 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.gxx.crm.vo.SaleChance" >
-    insert into t_sale_chance (id, chance_source, customer_name, 
-      cgjl, overview, link_man, 
-      like_phone, description, create_man, 
-      assign_man, assign_time, state, 
-      dev_result, is_valid, create_date, 
+    insert into t_sale_chance (id, chance_source, customer_name,
+      cgjl, overview, link_man,
+      link_phone, description, create_man,
+      assign_man, assign_time, state,
+      dev_result, is_valid, create_date,
       update_date)
-    values (#{id,jdbcType=INTEGER}, #{chanceSource,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
-      #{cgjl,jdbcType=INTEGER}, #{overview,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR}, 
-      #{likePhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createMan,jdbcType=VARCHAR}, 
-      #{assignMan,jdbcType=VARCHAR}, #{assignTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
-      #{devResult,jdbcType=INTEGER}, #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{chanceSource,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR},
+      #{cgjl,jdbcType=INTEGER}, #{overview,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR},
+      #{linkPhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createMan,jdbcType=VARCHAR},
+      #{assignMan,jdbcType=VARCHAR}, #{assignTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER},
+      #{devResult,jdbcType=INTEGER}, #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP},
       #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.gxx.crm.vo.SaleChance" >
@@ -68,8 +68,8 @@
       <if test="linkMan != null" >
         link_man,
       </if>
-      <if test="likePhone != null" >
-        like_phone,
+      <if test="linkPhone != null" >
+        link_phone,
       </if>
       <if test="description != null" >
         description,
@@ -118,8 +118,8 @@
       <if test="linkMan != null" >
         #{linkMan,jdbcType=VARCHAR},
       </if>
-      <if test="likePhone != null" >
-        #{likePhone,jdbcType=VARCHAR},
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -168,8 +168,8 @@
       <if test="linkMan != null" >
         link_man = #{linkMan,jdbcType=VARCHAR},
       </if>
-      <if test="likePhone != null" >
-        like_phone = #{likePhone,jdbcType=VARCHAR},
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
       cgjl = #{cgjl,jdbcType=INTEGER},
       overview = #{overview,jdbcType=VARCHAR},
       link_man = #{linkMan,jdbcType=VARCHAR},
-      like_phone = #{likePhone,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       create_man = #{createMan,jdbcType=VARCHAR},
       assign_man = #{assignMan,jdbcType=VARCHAR},
@@ -220,4 +220,24 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 多条件查询 -->
+  <select id="selectByParams" parameterType="com.gxx.crm.query.SaleChanceQuery" resultType="com.gxx.crm.vo.SaleChance">
+    select
+        <include refid="Base_Column_List"/>
+    from
+        t_sale_chance
+    <where>
+        is_valid = 1
+        <if test="customerName != null and customerName != ''">
+            and customer_name like concat('%', #{customerName}, '%')
+        </if>
+        <if test="createMan != null and createMan != ''">
+            and create_man like concat('%', #{createMan}, '%')
+        </if>
+        <if test="state != null">
+            and state = #{state}
+        </if>
+    </where>
+  </select>
 </mapper>
