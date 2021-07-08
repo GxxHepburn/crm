@@ -18,11 +18,11 @@ layui.use(['form','jquery','jquery_cookie'], function () {
         // 发送ajax请求
         $.ajax({
             type:"post",
-            url:ctx + "/user/updatePwd",
+            url:ctx + "/user/updateUserPwd",
             data:{
-                oldPassword:data.field.old_password,
-                newPassword:data.field.new_password,
-                repeatPassword:data.field.again_password
+                oldPassword: data.field.old_password,
+                newPassword: data.field.new_password,
+                repeatPassword: data.field.again_password
             },
             success:function (result) {
                 // 判断是否修改成功

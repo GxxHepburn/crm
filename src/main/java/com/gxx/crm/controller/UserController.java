@@ -58,22 +58,22 @@ public class UserController extends BaseController {
     /**
      * 用户修改密码
      * @param request
-     * @param oldPwd
-     * @param newPwd
-     * @param repeatPwd
+     * @param oldPassword
+     * @param newPassword
+     * @param repeatPassword
      * @return
      */
     @PostMapping("/updateUserPwd")
     @ResponseBody
     public ResultInfo updateUserPwd(HttpServletRequest request,
-                                    String oldPwd, String newPwd, String repeatPwd) {
+                                    String oldPassword, String newPassword, String repeatPassword) {
         ResultInfo resultInfo = new ResultInfo();
 
         try {
             // 获取cookie中的userId
             Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
             // 调用Service层修改密码方法
-            userService.updatePassword(userId, oldPwd, newPwd, repeatPwd);
+            userService.updatePassword(userId, oldPassword, newPassword, repeatPassword);
         } catch (ParamsException paramsException) {
             resultInfo.setCode(paramsException.getCode());
             resultInfo.setMsg(paramsException.getMsg());
@@ -84,5 +84,14 @@ public class UserController extends BaseController {
             e.printStackTrace();
         }
         return resultInfo;
+    }
+
+    /**
+     * 进入修改密码的页面
+     * @return
+     */
+    @RequestMapping("/toPasswordPage")
+    public String toPasswordPage() {
+        return "user/password";
     }
 }
