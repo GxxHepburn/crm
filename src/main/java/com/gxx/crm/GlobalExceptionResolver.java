@@ -2,6 +2,7 @@ package com.gxx.crm;
 
 import com.alibaba.fastjson.JSON;
 import com.gxx.crm.base.ResultInfo;
+import com.gxx.crm.exceptions.NoLoginException;
 import com.gxx.crm.exceptions.ParamsException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
+ * Spring HandlerExceptionResolver实现处理在控制器执行期间发生的意外异常。
  * 全局异常统一处理
  * @author gxx
  * @create 2021-07-08 12:58
@@ -39,6 +41,17 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
      */
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
+
+        /**
+         * 非法请求拦截
+         *  判断是否抛出未登录异常
+         *      如果抛出该异常，则要求用户登录，重定向跳转到登录页面
+         */
+        if (e instanceof NoLoginException) {
+            // 重定向到登录页面
+            ModelAndView modelAndView = new ModelAndView("redirect:/index");
+            return modelAndView;
+        }
 
         /**
          * 设置默认的异常处理 （返回视图）
