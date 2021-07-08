@@ -37,21 +37,12 @@ public class UserController extends BaseController {
     public ResultInfo userLogin(String userName, String userPwd) {
 
         ResultInfo resultInfo = new ResultInfo();
-        // 通过try catch 捕获service层的异常，如果service层抛出异常，则表示登录失败，否则登录成功
-        try {
-            // 调用service层登录方法
-            UserModel userModel = userService.userLogin(userName, userPwd);
-            // 设置ResultInfo的result的值（将数据返回给请求）
-            resultInfo.setResult(userModel);
-        } catch (ParamsException paramsException) {
-            resultInfo.setCode(paramsException.getCode());
-            resultInfo.setMsg(paramsException.getMsg());
-            paramsException.printStackTrace();
-        } catch (Exception e) {
-            resultInfo.setCode(500);
-            resultInfo.setMsg("登录失败！");
-            e.printStackTrace();
-        }
+
+        // 调用service层登录方法
+        UserModel userModel = userService.userLogin(userName, userPwd);
+        // 设置ResultInfo的result的值（将数据返回给请求）
+        resultInfo.setResult(userModel);
+
         return resultInfo;
     }
 
@@ -69,20 +60,11 @@ public class UserController extends BaseController {
                                     String oldPassword, String newPassword, String repeatPassword) {
         ResultInfo resultInfo = new ResultInfo();
 
-        try {
-            // 获取cookie中的userId
-            Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
-            // 调用Service层修改密码方法
-            userService.updatePassword(userId, oldPassword, newPassword, repeatPassword);
-        } catch (ParamsException paramsException) {
-            resultInfo.setCode(paramsException.getCode());
-            resultInfo.setMsg(paramsException.getMsg());
-            paramsException.printStackTrace();
-        } catch (Exception e) {
-            resultInfo.setCode(500);
-            resultInfo.setMsg("修改密码失败！");
-            e.printStackTrace();
-        }
+        // 获取cookie中的userId
+        Integer userId = LoginUserUtil.releaseUserIdFromCookie(request);
+        // 调用Service层修改密码方法
+        userService.updatePassword(userId, oldPassword, newPassword, repeatPassword);
+
         return resultInfo;
     }
 
