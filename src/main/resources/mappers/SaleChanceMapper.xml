@@ -224,19 +224,25 @@
   <!-- 多条件查询 -->
   <select id="selectByParams" parameterType="com.gxx.crm.query.SaleChanceQuery" resultType="com.gxx.crm.vo.SaleChance">
     select
-        <include refid="Base_Column_List"/>
+        s.id, s.chance_source, s.customer_name, s.cgjl, s.overview, s.link_man, s.link_phone, s.description,
+        s.create_man, s.assign_man, s.assign_time, s.state, s.dev_result, s.is_valid, s.create_date, s.update_date,
+        u.user_name as uname
     from
-        t_sale_chance
+        t_sale_chance s
+    inner join
+        t_user u
+    on
+        s.assign_man = u.id
     <where>
-        is_valid = 1
+        s.is_valid = 1
         <if test="customerName != null and customerName != ''">
-            and customer_name like concat('%', #{customerName}, '%')
+            and s.customer_name like concat('%', #{customerName}, '%')
         </if>
         <if test="createMan != null and createMan != ''">
-            and create_man like concat('%', #{createMan}, '%')
+            and s.create_man like concat('%', #{createMan}, '%')
         </if>
         <if test="state != null">
-            and state = #{state}
+            and s.state = #{state}
         </if>
     </where>
   </select>

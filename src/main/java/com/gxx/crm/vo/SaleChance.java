@@ -41,4 +41,7 @@ public class SaleChance {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
+
+    // 分配人
+    private String uname;
 }

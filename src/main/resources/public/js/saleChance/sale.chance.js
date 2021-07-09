@@ -94,4 +94,23 @@ layui.use(['table','layer'],function(){
             return "<div style='color: blue'>未知</div>";
         }
     }
+
+    $(".search_btn").click(function () {
+        /**
+         * 表格重载
+         *  多条件查询
+         */
+        tableIns.reload({
+            // 设置需要传递给后端的参数
+            where: {    // 设定异步数据接口的额外参数，任意设
+                // 通过文本框的值，设定传递的参数
+                customerName: $("[name='customerName']").val(),    // 客户名称
+                createMan: $("[name='createMan']").val(),  // 创建人
+                state:  $("#state").val(), //状态
+            },
+            page: {
+                curr: 1 // 重新从第 1 页开始
+            }
+        });
+    });
 });
