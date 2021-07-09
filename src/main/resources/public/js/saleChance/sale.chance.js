@@ -113,4 +113,45 @@ layui.use(['table','layer'],function(){
             }
         });
     });
+
+    /**
+     * 监听头部工具栏事件
+     *  格式:
+     *      table.on('toolbar(数据表格的lay-filter属性值)', function (data) {
+     *      });
+     */
+    table.on('toolbar(saleChances)', function (data) {
+        // data.event: 对应的元素上设置的lay-event属性值
+        console.log(data)
+
+        // 判断对应的事件类型
+        if (data.event == "add") {
+            // 添加操作
+            openSaleChanceDialog();
+        } else if (data.event = "del") {
+            // 删除操作
+        }
+    });
+
+    /**
+     * 打开添加营销机会数据的窗口
+     */
+    function openSaleChanceDialog() {
+        // 弹出层标题
+        var title = "<h3>营销机会管理 - 添加营销机会</h3>";
+        var url = ctx + "/sale_chance/toSaleChancePage";
+        // iframe层
+        layui.layer.open({
+            // 类型
+            type: 2,
+            // 标题
+            title: title,
+            // 宽高
+            area: ['500px', '620px'],
+            // url地址
+            content: url,
+            // 可以最大化与最小化
+            maxmin: true
+        })
+    }
 });
