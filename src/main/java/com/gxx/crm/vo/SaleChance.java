@@ -1,5 +1,6 @@
 package com.gxx.crm.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -26,6 +27,7 @@ public class SaleChance {
 
     private String assignMan;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date assignTime;
 
     private Integer state;
@@ -34,7 +36,9 @@ public class SaleChance {
 
     private Byte isValid;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
 }
