@@ -179,7 +179,31 @@ layui.use(['table','layer'],function(){
             // 打开修改营销机会窗口
             openSaleChanceDialog(saleChanceId);
         } else if (data.event == "del") { // 删除操作
-
+            // 弹出确认框，询问用户是否确认删除
+            layer.confirm('确定要删除该记录吗？', {icon: 3, title: "营销机会管理"}, function (index) {
+                // 关闭确认框
+                layer.close(index);
+                // 发送ajax请求，删除记录
+                $.ajax({
+                   type: "post",
+                    url: ctx + "/sale_chance/delete",
+                    data: {
+                       ids: data.data.id
+                    },
+                    success: function (result) {
+                       // 判断删除结果
+                        if (result.code == 200) {
+                            // 提示成功
+                            layer.msg("删除成功！", {icon: 6});
+                            // 刷新表格
+                            tableIns.reload();
+                        } else {
+                            // 提示失败
+                            layer.msg(result.msg, {icon: 5});
+                        }
+                    }
+                });
+            });
         }
     })
 });
