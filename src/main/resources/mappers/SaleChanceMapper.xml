@@ -240,8 +240,10 @@
         <if test="state != null">
             and s.state = #{state}
         </if>
+        <!-- 在字符串类型的字段下插入数字会自动转换为字符串，在数字类型的字段下插入内容是数字的字符串会自动将字符串转换为数字 -->
+        <!-- 这里数据库中是int类型，传入了一个空字符串string类型 -->
         <!-- 根据开发状态进行查询 -->
-        <if test="devResult != null">
+        <if test="devResult != null and devResult != ''">
           and s.dev_result = #{devResult}
         </if>
         <!-- 根据指派人进行查询 -->
