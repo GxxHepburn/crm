@@ -42,7 +42,11 @@
 			</script>
 		
 		
-			<!--操作-->
+			<!-- 行工具栏
+					详情：机会数据开发结束，点击详情展示计划相关的数据
+					开发：机会数据处于开发中，点击开发添加计划项数据
+					此时链接内容显示由开发结果控制
+			 -->
 			<script id="op" type="text/html" >
 				{{# if (d.devResult=== 0 || d.devResult==1) { }}
 					<a href="javascript:;"  class="layui-btn layui-btn-warm layui-btn-xs"  lay-event="dev">开发</a>
