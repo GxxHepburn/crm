@@ -13,8 +13,12 @@ public class SaleChanceQuery extends BaseQuery {
 
     // 分页参数
 
-    // 条件查询
+    // 营销机会 条件查询
     private String customerName; // 客户名
     private String createMan; // 创建人
     private Integer state; // 分配状态 0=未分配 1=已分配
+
+    // 客户开发计划 条件查询
+    private String devResult; // 开发状态
+    private Integer assignMan; // 指派人
 }

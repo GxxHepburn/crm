@@ -95,6 +95,9 @@ layui.use(['table','layer'],function(){
         }
     }
 
+    /**
+     * 搜索按钮的点击事件
+     */
     $(".search_btn").click(function () {
         /**
          * 表格重载
