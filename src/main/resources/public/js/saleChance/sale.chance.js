@@ -130,8 +130,62 @@ layui.use(['table','layer'],function(){
             openSaleChanceDialog();
         } else if (data.event = "del") {
             // 删除操作
+            deleteSaleChance(data);
         }
     });
+
+    /**
+     * 删除营销机会（删除多条记录）
+     * @param data
+     */
+    function deleteSaleChance(data) {
+        // 获取数据表格选中的行数据     table.checkStatus("数据表格的ID属性值")
+        var checkStatus = table.checkStatus("saleChanceTable");
+        console.log(checkStatus);
+
+        // 获取所有被选中的记录对应的数据
+        var saleChanceData = checkStatus.data;
+        // 判断用户是否选择记录 （选中行的数量大于0）
+        if (saleChanceData.length < 1) {
+            layer.msg("请选择要删除的记录！", {icon: 5});
+            return;
+        }
+
+        // 询问用户是否确认删除
+        layer.confirm('您确定要删除选中的记录吗？', {icon: 3, title: '营销机会管理'}, function (index) {
+            // 关闭确认框
+            layer.close(index);
+            // 传递的参数是数组 ids=1&ids=2&ids=3
+            var ids = "ids=";
+            // 循环选中的行记录的数据
+            for (var i = 0; i < saleChanceData.length; i++) {
+                if (i < saleChanceData.length - 1) {
+                    ids += saleChanceData[i].id + "&ids=";
+                } else {
+                    ids += saleChanceData[i].id;
+                }
+            }
+            console.log(ids);
+            // 发送ajax请求，执行删除营销机会
+            $.ajax({
+                type: "post",
+                url: ctx + "/sale_chance/delete",
+                data: ids, // 传递的参数是数组 ids=1&ids=2&ids=3
+                success: function (result) {
+                    // 判断删除结果
+                    if (result.code == 200) {
+                        // 提示成功
+                        layer.msg("删除成功！", {icon: 6});
+                        // 刷新表格
+                        tableIns.reload();
+                    } else {
+                        // 提示失败
+                        layer.msg(result.msg, {icon: 5});
+                    }
+                }
+            })
+        });
+    }
 
     /**
      * 打开添加/修改营销机会数据的窗口
