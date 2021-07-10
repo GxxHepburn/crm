@@ -71,4 +71,17 @@ public class SaleChanceController extends BaseController {
     public String toSaleChancePage() {
         return "saleChance/add_update";
     }
+
+    /**
+     * 更新营销机会
+     * @param saleChance
+     * @return
+     */
+    @PostMapping("/update")
+    @ResponseBody
+    public ResultInfo updateSaleChance(SaleChance saleChance) {
+        // 调用Service层的更新方法
+        saleChanceService.updateSaleChance(saleChance);
+        return success("营销机会数据更新成功！");
+    }
 }
