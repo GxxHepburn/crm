@@ -91,4 +91,17 @@ public class SaleChanceController extends BaseController {
         saleChanceService.updateSaleChance(saleChance);
         return success("营销机会数据更新成功！");
     }
+
+    /**
+     * 删除营销机会
+     * @param ids
+     * @return ResultInfo
+     */
+    @PostMapping("/delete")
+    @ResponseBody
+    public ResultInfo deleteSaleChance(Integer[] ids) {
+        // 调用Service层的方法
+        saleChanceService.deleteBatch(ids);
+        return success("营销机会数据删除成功！");
+    }
 }

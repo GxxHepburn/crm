@@ -221,4 +221,16 @@ public class SaleChanceService extends BaseService<SaleChance, Integer> {
         /* 执行更新操作，判断受影响函数 */
         AssertUtil.isTrue(saleChanceMapper.updateByPrimaryKeySelective(saleChance) != 1, "更新营销机会失败！");
     }
+
+    /**
+     * 删除营销机会
+     * @param ids
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteSaleChance(Integer[] ids) {
+        // 判断ID是否为空
+        AssertUtil.isTrue(null == ids || ids.length < 1, "待删除记录不存在！");
+        // 执行删除 （更新）操作，判断受影响的行数
+        AssertUtil.isTrue(saleChanceMapper.deleteBatch(ids) != ids.length, "营销机会数据删除失败！");
+    }
 }
