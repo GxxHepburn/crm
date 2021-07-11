@@ -60,7 +60,7 @@ layui.use(['table','layer'],function(){
      */
     function openAddOrUpdateCusDevPlanDialog () {
         var title = "计划项管理 - 添加计划项";
-        var url = ctx + "/cus_dev_plan/toAddOrUpdateCusDevPlanPage";
+        var url = ctx + "/cus_dev_plan/toAddOrUpdateCusDevPlanPage?sId=" + $("[name='id']").val();
         // iframe层
         layui.layer.open({
            type: 2,

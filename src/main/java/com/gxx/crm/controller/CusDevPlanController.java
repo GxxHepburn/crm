@@ -81,7 +81,9 @@ public class CusDevPlanController extends BaseController {
      * @return
      */
     @RequestMapping("/toAddOrUpdateCusDevPlanPage")
-    public String toAddOrUpdateCusDevPlanPage() {
+    public String toAddOrUpdateCusDevPlanPage(Integer sId, HttpServletRequest request) {
+        // 将营销机会ID设置到请求域中，给计划项页面获取
+        request.setAttribute("sId", sId);
         return "cusDevPlan/add_update";
     }
 }
