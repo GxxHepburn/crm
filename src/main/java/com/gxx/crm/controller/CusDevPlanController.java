@@ -86,4 +86,11 @@ public class CusDevPlanController extends BaseController {
         request.setAttribute("sId", sId);
         return "cusDevPlan/add_update";
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public ResultInfo updateCusDevPlan(CusDevPlan cusDevPlan) {
+        cusDevPlanService.updateCusDevPlan(cusDevPlan);
+        return success("计划项更新成功！");
+    }
 }
