@@ -75,4 +75,13 @@ public class CusDevPlanController extends BaseController {
         cusDevPlanService.addCusDevPlan(cusDevPlan);
         return success("计划项添加成功！");
     }
+
+    /**
+     * 进入添加或修改计划项的页面
+     * @return
+     */
+    @RequestMapping("/toAddOrUpdateCusDevPlanPage")
+    public String toAddOrUpdateCusDevPlanPage() {
+        return "cusDevPlan/add_update";
+    }
 }
