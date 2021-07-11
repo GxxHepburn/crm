@@ -62,7 +62,7 @@ layui.use(['table','layer'],function(){
         var title = "计划项管理 - 添加计划项";
         var url = ctx + "/cus_dev_plan/toAddOrUpdateCusDevPlanPage?sId=" + $("[name='id']").val();
 
-        console.log("----id: " + id);
+
         // 判断计划项的ID是否为空 （如果为空，则表示添加；不为空则表示更新操作）
         if (id != null && id != '') {
             // 更新计划项
