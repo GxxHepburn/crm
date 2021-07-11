@@ -1,11 +1,14 @@
 package com.gxx.crm.controller;
 
 import com.gxx.crm.base.BaseController;
+import com.gxx.crm.base.ResultInfo;
 import com.gxx.crm.query.CusDevPlanQuery;
 import com.gxx.crm.service.CusDevPlanService;
 import com.gxx.crm.service.SaleChanceService;
+import com.gxx.crm.vo.CusDevPlan;
 import com.gxx.crm.vo.SaleChance;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -59,5 +62,17 @@ public class CusDevPlanController extends BaseController {
     @ResponseBody
     public Map<String, Object> queryCusDevPlanByParams(CusDevPlanQuery cusDevPlanQuery) {
         return cusDevPlanService.queryCusDevPlanByParams(cusDevPlanQuery);
+    }
+
+    /**
+     * 添加计划项
+     * @param cusDevPlan
+     * @return
+     */
+    @PostMapping("/add")
+    @ResponseBody
+    public ResultInfo addCusDevPlan(CusDevPlan cusDevPlan) {
+        cusDevPlanService.addCusDevPlan(cusDevPlan);
+        return success("计划项添加成功！");
     }
 }
