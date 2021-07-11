@@ -128,4 +128,24 @@ public class CusDevPlanService extends BaseService<CusDevPlan, Integer> {
         /* 3. 执行添加操作，判断受影响的行数 */
         AssertUtil.isTrue(cusDevPlanMapper.updateByPrimaryKeySelective(cusDevPlan) != 1, "计划项更新失败！");
     }
+
+    /**
+     * 删除计划项
+     *  1. 判断ID是否为空
+     *  2. 修改isValid属性
+     *  3. 执行更新操作
+     * @param id
+     */
+    public void deleteCusDevPlan(Integer id) {
+        // 1. 判断ID是否为空
+        AssertUtil.isTrue(null == id, "待删除记录不存在！");
+        // 通过ID查询计划项对象
+        CusDevPlan cusDevPlan = cusDevPlanMapper.selectByPrimaryKey(id);
+        AssertUtil.isTrue(cusDevPlan == null, "待删除记录不存在！");
+        // 2. 设置记录无效 （删除）
+        cusDevPlan.setIsValid(0);
+        cusDevPlan.setUpdateDate(new Date());
+        // 3. 执行更新操作
+        AssertUtil.isTrue(cusDevPlanMapper.updateByPrimaryKeySelective(cusDevPlan) != 1, "计划项数据删除失败！");
+    }
 }

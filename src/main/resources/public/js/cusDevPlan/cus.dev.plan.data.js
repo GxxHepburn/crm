@@ -88,9 +88,31 @@ layui.use(['table','layer'],function(){
            // 打开添加或修改计划项的页面
            openAddOrUpdateCusDevPlanDialog(data.data.id);
        } else if (data.event == "del") { // 删除计划项
-
+            // 删除计划项
+           deleteCusDevPlan(data.data.id);
        }
     });
 
+    /**
+     * 删除计划项
+     */
+    function deleteCusDevPlan(id) {
+        // 弹出确认框，询问用户是否确认删除
+        layer.confirm('您确认要删除该记录吗？', {icon: 3, title: '开发项数据管理'}, function (index) {
+            // 发送ajax请求，执行删除操作
+            $.post(ctx + '/cus_dev_plan/delete', {id: id}, function (result) {
+               // 判断删除结果
+               if (result.code == 200) {
+                    // 提示成功
+                   layer.msg('删除成功', {icon: 6});
+                   // 刷新数据表格
+                   tableIns.reload();
+               } else {
+                   // 提示失败原因
+                   layer.msg(result.msg, {icon: 5});
+               }
+            });
+        });
+    }
 
 });
