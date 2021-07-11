@@ -34,7 +34,7 @@ public class CusDevPlanService extends BaseService<CusDevPlan, Integer> {
         // 得到对应分页对象
         PageInfo<CusDevPlan> pageInfo = new PageInfo<>(cusDevPlanMapper.selectByParams(cusDevPlanQuery));
         // 设置Map对象
-        map.put("code", 200);
+        map.put("code", 0);
         map.put("msg", "success");
         map.put("count", pageInfo.getTotal());
         // 设置分页好的列表

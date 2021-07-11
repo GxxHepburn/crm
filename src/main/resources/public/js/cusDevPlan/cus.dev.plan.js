@@ -122,7 +122,7 @@ layui.use(['table','layer'],function(){
             // 标题
             title: title,
             // 宽高
-            area: ['750px', '550px'],
+            area: ['830px', '550px'],
             // url地址
             content: ctx + "/cus_dev_plan/toCusDevPlanPage?id=" + id,
             // 可以最大化最小化
