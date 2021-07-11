@@ -1,13 +1,17 @@
 package com.gxx.crm.controller;
 
 import com.gxx.crm.base.BaseController;
+import com.gxx.crm.query.CusDevPlanQuery;
+import com.gxx.crm.service.CusDevPlanService;
 import com.gxx.crm.service.SaleChanceService;
 import com.gxx.crm.vo.SaleChance;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author gxx
@@ -19,6 +23,9 @@ public class CusDevPlanController extends BaseController {
 
     @Resource
     SaleChanceService saleChanceService;
+
+    @Resource
+    CusDevPlanService cusDevPlanService;
 
     /**
      * 进入客户开发计划页面
@@ -36,11 +43,21 @@ public class CusDevPlanController extends BaseController {
      */
     @RequestMapping("/toCusDevPlanPage")
     public String index(Integer id, HttpServletRequest request) {
-
         // 通过id查询营销机会对象
         SaleChance saleChance = saleChanceService.selectByPrimaryKey(id);
         // 将对象设置到请求域中
         request.setAttribute("saleChance", saleChance);
         return "cusDevPlan/cus_dev_plan_data";
+    }
+
+    /**
+     * 客户开发计划数据查询（分页多条件查询）
+     * @param cusDevPlanQuery
+     * @return
+     */
+    @RequestMapping("list")
+    @ResponseBody
+    public Map<String, Object> queryCusDevPlanByParams(CusDevPlanQuery cusDevPlanQuery) {
+        return cusDevPlanService.queryCusDevPlanByParams(cusDevPlanQuery);
     }
 }
