@@ -1,5 +1,6 @@
 1、前台传输数据与后端接收数据-类型
         spring根据属性名一一对应传值
+        前台传ids=32,spring可以用Integer[] ids接收
   后台发送数据与前台接收数据-类型
         spring后台传list，前台收到就是array
         后台传map，前台收到的就是{uname: "admin", id: 10}
