@@ -4,6 +4,7 @@ import com.gxx.crm.base.BaseController;
 import com.gxx.crm.base.ResultInfo;
 import com.gxx.crm.exceptions.ParamsException;
 import com.gxx.crm.model.UserModel;
+import com.gxx.crm.query.UserQuery;
 import com.gxx.crm.service.UserService;
 import com.gxx.crm.utils.LoginUserUtil;
 import org.apache.ibatis.annotations.Param;
@@ -87,5 +88,16 @@ public class UserController extends BaseController {
     @ResponseBody
     public List<Map<String, Object>> queryAllSales() {
         return userService.queryAllSales();
+    }
+
+    /**
+     * 分页多条件查询用户列表
+     * @param userQuery
+     * @return
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public Map<String, Object> selectByParams(UserQuery userQuery) {
+        return userService.queryByParamsForTable(userQuery);
     }
 }

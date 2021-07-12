@@ -1,6 +1,21 @@
 1、前台传输数据与后端接收数据-类型
-    后台发送数据与前台接收数据-类型
+        spring根据属性名一一对应传值
+  后台发送数据与前台接收数据-类型
+        spring后台传list，前台收到就是array
+        后台传map，前台收到的就是{uname: "admin", id: 10}
 2、@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
    @DateTimeFormat(pattern = "yyyy-MM-dd")
-3、mybatis可以进行类型装欢
+3、mybatis可以进行类型转换
 4、el表达式 **?String("yyyy-MM-dd")
+5、非空判断
+    java
+        不用基本数据类型
+        != null
+        != ""
+    js
+        != null (!= undefined)
+        != ''
+
+        undefined是从null派生出来的，所以把它们定义为相等的
+            如果在一些情况下，我们一定要区分这两个值
+        alert(null == undefined); //output "true"
