@@ -79,8 +79,16 @@ layui.use(['table','layer'],function(){
     /**
      * 打开添加/修改用户的对话框
      */
-    function openAddOrUpdateUserDialog() {
+    function openAddOrUpdateUserDialog(id) {
         var title = "<h3>用户管理 - 添加用户</h3>";
+        var url = ctx + "/user/toAddOrUpdateUserPage";
+
+        // 判断id是否为空;如果为空，则为添加操作，否则是修改擦欧总
+        if (id != null && id != '') {
+            title = "<h3>用户管理 - 更新用户</h3>";
+            url += "?id=" + id; // 传递主键，查询数据
+        }
+
         // iframe层
         layui.layer.open({
             // 类型
@@ -90,9 +98,20 @@ layui.use(['table','layer'],function(){
             // 宽高
             area: ['650px', '400px'],
             // url地址
-            content: ctx + "/user/toAddOrUpdateUserPage",
+            content: url,
             // 可以最大化最小化
             maxmin: true
         });
     }
+
+    /**
+     * 监听行工具栏
+     */
+    table.on('tool(users)', function (data) {
+        if (data.event == "edit") { // 更新用户
+            openAddOrUpdateUserDialog(data.data.id);
+        } else if (data.event == "del") { // 删除用户
+
+        }
+    });
 });

@@ -29,6 +29,11 @@ layui.use(['form', 'layer'], function () {
         // 请求的地址
         var url = ctx + "/user/add";
 
+        // 判断用户ID是否为空，如果不为空则为更新操作
+        if ($("[name='id']").val()) {
+            url = ctx + "/user/update"
+        }
+
         $.post(url, formData, function (result) {
             // 判断操作是否执行成功 200 = 成功
             if (result.code == 200) {

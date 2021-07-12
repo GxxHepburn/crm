@@ -19,6 +19,12 @@
         undefined是从null派生出来的，所以把它们定义为相等的
             如果在一些情况下，我们一定要区分这两个值
         alert(null == undefined); //output "true"
+
+    例子：
+        // 判断用户ID是否为空，如果不为空则为更新操作
+                if ($("[name='id']").val()) {
+                    //TO Do
+                }
 6、EL的隐式对象包括：pageContext、initParam（访问上下文参数）、
     param（访问请求参数）、paramValues、header（访问请求头）、
     headerValues、cookie（访问cookie）、applicationScope（访问application作用域）、
