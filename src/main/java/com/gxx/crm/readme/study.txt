@@ -19,3 +19,13 @@
         undefined是从null派生出来的，所以把它们定义为相等的
             如果在一些情况下，我们一定要区分这两个值
         alert(null == undefined); //output "true"
+6、EL的隐式对象包括：pageContext、initParam（访问上下文参数）、
+    param（访问请求参数）、paramValues、header（访问请求头）、
+    headerValues、cookie（访问cookie）、applicationScope（访问application作用域）、
+    sessionScope（访问session作用域）、requestScope（访问request作用域）、
+    pageScope（访问page作用域）
+
+    从page，request，session，application中取值。
+        比如:${name}它的意思就从以上4个对象中去名为name的值。
+        如果是在转发到这个页面之前，在request中setAttribute（“name”，“测试”），
+        那么${name} 就会被 测试 这个信息给替换。

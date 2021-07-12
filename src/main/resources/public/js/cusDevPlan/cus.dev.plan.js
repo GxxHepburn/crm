@@ -127,7 +127,7 @@ layui.use(['table','layer'],function(){
             content: ctx + "/cus_dev_plan/toCusDevPlanPage?id=" + id,
             // 可以最大化最小化
             maxmin: true
-        })
+        });
     }
 
 });

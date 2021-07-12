@@ -63,4 +63,36 @@ layui.use(['table','layer'],function(){
             }
         });
     });
+
+    /**
+     * 监听头部工具栏
+     */
+    table.on('toolbar(users)', function (data) {
+        if (data.event == "add") { // 添加用户
+            // 打开添加/修改用户的对话框
+            openAddOrUpdateUserDialog();
+        } else if (data.event == "del") { // 删除用户
+
+        }
+    });
+
+    /**
+     * 打开添加/修改用户的对话框
+     */
+    function openAddOrUpdateUserDialog() {
+        var title = "<h3>用户管理 - 添加用户</h3>";
+        // iframe层
+        layui.layer.open({
+            // 类型
+            type: 2,
+            // 标题
+            title: title,
+            // 宽高
+            area: ['650px', '400px'],
+            // url地址
+            content: ctx + "/user/toAddOrUpdateUserPage",
+            // 可以最大化最小化
+            maxmin: true
+        });
+    }
 });

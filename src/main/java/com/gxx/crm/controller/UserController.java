@@ -118,4 +118,13 @@ public class UserController extends BaseController {
         userService.addUser(user);
         return success("用户添加成功！");
     }
+
+    /**
+     * 打开添加或修改用户的页面
+     * @return
+     */
+    @RequestMapping("/toAddOrUpdateUserPage")
+    public String toAddOrUpdateUserPage() {
+        return "user/add_update";
+    }
 }
