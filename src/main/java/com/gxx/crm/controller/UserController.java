@@ -100,4 +100,9 @@ public class UserController extends BaseController {
     public Map<String, Object> selectByParams(UserQuery userQuery) {
         return userService.queryByParamsForTable(userQuery);
     }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "user/user";
+    }
 }
