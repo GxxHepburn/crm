@@ -7,6 +7,7 @@ import com.gxx.crm.model.UserModel;
 import com.gxx.crm.query.UserQuery;
 import com.gxx.crm.service.UserService;
 import com.gxx.crm.utils.LoginUserUtil;
+import com.gxx.crm.vo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -104,5 +105,17 @@ public class UserController extends BaseController {
     @RequestMapping("/index")
     public String index() {
         return "user/user";
+    }
+
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    @PostMapping("/add")
+    @ResponseBody
+    public ResultInfo addUser(User user) {
+        userService.addUser(user);
+        return success("用户添加成功！");
     }
 }
