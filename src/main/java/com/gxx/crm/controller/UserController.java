@@ -127,4 +127,16 @@ public class UserController extends BaseController {
     public String toAddOrUpdateUserPage() {
         return "user/add_update";
     }
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
+    @PostMapping("/update")
+    @ResponseBody
+    public ResultInfo updateUser(User user) {
+        userService.updateUser(user);
+        return success("用户更新成功！");
+    }
 }
