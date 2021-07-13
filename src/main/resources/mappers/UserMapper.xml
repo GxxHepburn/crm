@@ -35,7 +35,15 @@
       #{isValid,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gxx.crm.vo.User" >
+  <!--
+    添加操作
+      默认返回的是受影响的行数，可以设置返回主键（自动增长）
+      useGeneratedKeys: 取值范围true/false, 表示获取主键，并赋值到keyProperty属性设置的模型属性（JavaBean实体类中的属性字段）
+      keyProperty: 设置返回值将赋值给实体类的哪个属性字段
+      keyColumn: 设置数据库中对应的主键
+    注意：函数返回值仍然是受影响的行数，返回的主键会赋值到实体类中
+   -->
+  <insert id="insertSelective" parameterType="com.gxx.crm.vo.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
