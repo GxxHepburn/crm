@@ -350,5 +350,16 @@ public class UserService extends BaseService<User, Integer> {
         AssertUtil.isTrue(ids == null || ids.length == 0, "待删除记录不存在！");
         // 执行删除操作，判断受影响的行数
         AssertUtil.isTrue(userMapper.deleteBatch(ids) != ids.length, "用户删除失败！");
+
+        // 遍历用户ID的数组
+        for (Integer userId : ids) {
+            // 通过用户ID查询角色记录
+            Integer count = userRoleMapper.countUserRoleByUserId(userId);
+            // 判断角色记录是否存在
+            if (count > 0) {
+                // 如果角色记录存在，则删除该用户对应的角色记录
+                AssertUtil.isTrue(userRoleMapper.deleteUserRoleByUserId(userId) != count, "删除用户失败！");
+            }
+        }
     }
 }

@@ -40,3 +40,12 @@
     当使用if语句时，会造成一些问题。最好使用包装类型。
     总结：全部使用包装类型。
     ps：https://blog.csdn.net/qq_35337467/article/details/82251968
+
+8、一种稳妥的批量删除方式
+    // 通过用户ID查询角色记录
+    Integer count = userRoleMapper.countUserRoleByUserId(userId);
+    // 判断角色记录是否存在
+    if (count > 0) {
+        // 如果角色记录存在，则删除该用户对应的角色记录
+        AssertUtil.isTrue(userRoleMapper.deleteUserRoleByUserId(userId) != count, "用户角色分配失败！");
+    }
