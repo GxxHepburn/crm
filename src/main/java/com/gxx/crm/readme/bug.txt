@@ -5,3 +5,4 @@
 2、发送请求时，是否有必要所有的请求都弹出（请求中。。。请稍后）之类的提示？
 3、springboot devtools 热部署问题，无效，需要详细研究。
 4、IDEA 每次添加新的public、views文件时，不编译，需要删除target重新编译？
+5、user/add.update.js中 formSelects中角色数目等于6时，下拉框向上弹出，正好把头部操作选项遮挡住了。
