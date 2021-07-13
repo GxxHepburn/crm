@@ -36,3 +36,7 @@
         比如:${name}它的意思就从以上4个对象中去名为name的值。
         如果是在转发到这个页面之前，在request中setAttribute（“name”，“测试”），
         那么${name} 就会被 测试 这个信息给替换。
+7、mybatis中sql语句参数类型基本类型与包装类型如果不使用if基本没区别
+    当使用if语句时，会造成一些问题。最好使用包装类型。
+    总结：全部使用包装类型。
+    ps：https://blog.csdn.net/qq_35337467/article/details/82251968

@@ -27,6 +27,8 @@ layui.use(['form', 'layer', 'formSelects'], function () {
         // 得到所有的表单元素的值
         var formData = data.field;
 
+        console.log(formData);
+
         // 请求的地址
         var url = ctx + "/user/add";
 
