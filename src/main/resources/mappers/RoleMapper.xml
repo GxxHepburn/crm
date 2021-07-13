@@ -105,7 +105,7 @@
   </update>
 
   <!-- 查询所有的角色列表 -->
-  <select id="queryAllRoles" parameterType="Integer" resultType="java.util.Map">
+  <select id="queryAllRoles" parameterType="java.lang.Integer" resultType="java.util.Map">
     select
         r.id,
         r.role_name AS roleName,

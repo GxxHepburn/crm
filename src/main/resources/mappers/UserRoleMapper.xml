@@ -90,4 +90,33 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 根据用户ID查询用户角色记录 -->
+  <select id="countUserRoleByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+        count(1)
+    from
+        t_user_role
+    where
+        user_id = #{userId}
+  </select>
+  
+  <!-- 根据用户ID删除用户角色记录 -->
+  <!-- resultType="java.lang.Integer" 不能添加 只需要函数返回值是Integer可以自动接收受影响的行数 -->
+  <delete id="deleteUserRoleByUserId" parameterType="java.lang.Integer">
+    delete from
+        t_user_role
+    where
+        user_id = #{userId}
+  </delete>
+  
+  <!-- 批量添加 -->
+  <insert id="insertBatch">
+    insert into
+        t_user_role (user_id, role_id, create_date, update_date)
+    values
+        <foreach collection="list" item="item" separator=",">
+          (#{item.userId}, #{item.roleId}, #{item.createDate}, #{item.updateDate})
+        </foreach>
+  </insert>
 </mapper>
