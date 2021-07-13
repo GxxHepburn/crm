@@ -105,11 +105,31 @@
   </update>
 
   <!-- 查询所有的角色列表 -->
-  <select id="queryAllRoles" resultType="java.util.Map">
+  <select id="queryAllRoles" parameterType="Integer" resultType="java.util.Map">
     select
-        id, role_name as roleName
+        r.id,
+        r.role_name AS roleName,
+    case
+        when
+            IFNULL(temp.id, 0) = 0 THEN ''
+        ELSE 'selected'
+    end
+    AS 'selected'
     from
-        t_role
+        t_role r
+    left join
+        (select
+            r.id
+        from
+            t_role r
+        left join
+            t_user_role ur
+        on
+            r.id = ur.role_id
+        where
+            user_id = #{userId}
+        ) temp
+    on r.id = temp.id
     where
         is_valid = 1
   </select>

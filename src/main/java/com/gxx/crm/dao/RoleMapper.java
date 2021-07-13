@@ -9,5 +9,5 @@ import java.util.Map;
 public interface RoleMapper extends BaseMapper<Role, Integer> {
 
     // 查询所有的角色列表 （只需要id与roleName）
-    public List<Map<String, Object>> queryAllRoles();
+    public List<Map<String, Object>> queryAllRoles(Integer userId);
 }
